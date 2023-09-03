@@ -1,0 +1,132 @@
+Exploratory Data  Analysis-2
+Assignment Questions 
+Assignment 
+Flight Price: 
+Q1. Load the flight price dataset and examine its dimensions. How many rows and columns does the  dataset have? 
+Q2. What is the distribution of flight prices in the dataset? Create a histogram to visualize the  distribution. 
+Q3. What is the range of prices in the dataset? What is the minimum and maximum price? 
+Q4. How does the price of flights vary by airline? Create a boxplot to compare the prices of different  airlines. 
+Q5. Are there any outliers in the dataset? Identify any potential outliers using a boxplot and describe how  they may impact your analysis. 
+Q6. You are working for a travel agency, and your boss has asked you to analyze the Flight Price dataset  to identify the peak travel season. What features would you analyze to identify the peak season, and how  would you present your findings to your boss? 
+Q7. You are a data analyst for a flight booking website, and you have been asked to analyze the Flight  Price dataset to identify any trends in flight prices. What features would you analyze to identify these  trends, and what visualizations would you use to present your findings to your team? 
+Q8. You are a data scientist working for an airline company, and you have been asked to analyze the  Flight Price dataset to identify the factors that affect flight prices. What features would you analyze to  identify these factors, and how would you present your findings to the management team? 
+Google Playstore:
+Q9. Load the Google Playstore dataset and examine its dimensions. How many rows and columns does  the dataset have
+? Df.shape
+
+(10841, 13)
+
+Q10. How does the rating of apps vary by category? Create a boxplot to compare the ratings of different  app categories. 
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+df=pd.read_csv('https://raw.githubusercontent.com/krishnaik06/playstore-Dataset/main/googleplaystore.csv')
+df.head(24)
+plt.figure(figsize=(12,6))
+sns.boxplot(x='Category',y='Rating',data=df, width=0.5,linewidth=0.7,saturation=1.0,whis=0.5,)
+plt.ylim(0,7)
+plt.xticks(rotation=90)  # Rotate x-axis labels by 45 degrees
+
+Q11. Are there any missing values in the dataset? Identify any missing values and describe how they may  impact your analysis. 
+missing=df[df.isna().any(axis=1)]
+missing_counts=df.isnull().sum()
+print(missing)
+print(missing_counts)
+
+Q12. What is the relationship between the size of an app and its rating? Create a scatter plot to visualize  the relationship. 
+plt.figure(figsize=(10,6))
+sns.scatterplot(x='Rating',y='Size',data=df,)
+
+
+Q13. How does the type of app affect its price? Create a bar chart to compare average prices by app type. 
+plt.figure(figsize=(10,6))
+sns.histplot(x='Price',y='Type',data=df, binwidth=5)
+plt.xticks(rotation=90)
+
+Q14. What are the top 10 most popular apps in the dataset? Create a frequency table to identify the apps  with the highest number of installs. 
+df['Installs']=df['Installs'].str.replace('+','',regex=True)
+df['Installs']=df['Installs'].str.replace(',','',regex=True)
+df['Installs']=df['Installs'].astype('float')
+sort=df.sort_values(by='Installs', ascending=True)
+sort.head(100
+Q15. A company wants to launch a new app on the Google Playstore and has asked you to analyze the  Google Playstore dataset to identify the most popular app categories. How would you approach this  task, and what features would you analyze to make recommendations to the company? 
+To identify the most popular app categories, I would primarily analyze the 'Category' and 'Installs' columns. Here's how I would approach the task based on these columns:
+Data Preparation:
+Load and clean the dataset, handling missing values, duplicates, and data types.
+Convert 'Installs' to a numeric format for analysis.
+Data Exploration:
+Examine the distribution of app categories in the 'Category' column.
+Analyze the 'Installs' column to understand the popularity of apps within each category.
+Calculate statistics like the mean, median, and mode of installations for each category.
+Visualization:
+Data Exploration:
+Examine the distribution of app categories in the 'Category' column.
+Analyze the 'Installs' column to understand the popularity of apps within each category.
+Calculate statistics like the mean, median, and mode of installations for each category.
+Visualization:
+Ranking Categories:
+Rank the app categories based on the number of installations.
+Identify the top-performing categories in terms of popularity.
+Recommendations:
+Provide recommendations to the company based on the analysis.
+Suggest categories that are popular and have a high number of installations as potential options for the new app.
+Market Research:
+Conduct market research to understand user preferences within the recommended categories.
+Explore user reviews and sentiments for apps in those categories.
+App Development Strategy:
+Recommend a development strategy for the new app, considering the identified popular categories.
+Determine the target category for the app.
+Consider other factors like competition and pricing.
+
+
+
+Data Science Masters 
+Assignment 
+Q16. A mobile app development company wants to analyze the Google Playstore dataset to identify the  most successful app developers. What features would you analyze to make recommendations to the  company, and what data visualizations would you use to present your findings? 
+To identify the most successful app developers using the Google Playstore dataset, I would focus on analyzing the following features from the provided list:
+Developer (App):
+Use the 'App' column to identify the app developer for each app.
+Rating:
+Analyze the 'Rating' column to understand the overall user ratings for apps developed by each developer.
+Calculate statistics like the mean and median ratings for each developer.
+Reviews:
+Consider the 'Reviews' column to assess the number of user reviews and feedback received by apps from each developer.
+Calculate statistics such as the total number of reviews or the average number of reviews per app.
+Installs:
+Examine the 'Installs' column to understand the popularity and reach of apps developed by each developer.
+Calculate statistics like the total number of installations or the average number of installations per app.
+Visualization:
+Create bar charts or scatter plots to visualize the ratings, reviews, and installations for apps from different developers.
+Use color-coding or grouping to highlight top-performing developers.
+Ranking Developers:
+Rank the developers based on criteria such as average rating, total reviews, or total installations.
+Identify the top-performing developers in terms of user satisfaction and popularity.
+Recommendations:
+Provide recommendations to the mobile app development company, highlighting the most successful developers.
+Suggest collaboration opportunities with top-rated and highly-installed app developers.
+
+Q17. A marketing research firm wants to analyze the Google Playstore dataset to identify the best time to  launch a new app. What features would you analyze to make recommendations to the company, and  what data visualizations would you use to present your findings? 
+To help the marketing research firm identify the best time to launch a new app using the Google Playstore dataset, I would focus on analyzing the following features from the provided list:
+Last Updated:
+Analyze the 'Last Updated' column to understand how recently apps in different categories were updated.
+Calculate statistics like the mean and median time since the last update for apps in various categories.
+Category:
+Consider the 'Category' column to group apps into relevant categories.
+Analyze how the frequency of updates varies across different app categories.
+Installs:
+Examine the 'Installs' column to understand how the number of installations is distributed among different categories.
+Determine if there are seasonal trends in app installations based on time of year.
+Content Rating:
+Explore the 'Content Rating' column to identify any differences in update patterns based on content rating (e.g., Everyone, Teen, Mature).
+Visualization:
+Use line charts to visualize the frequency of app updates over time.
+Create a bar chart or line chart to show the seasonality of app installations by month or quarter.
+Recommendations:
+Provide recommendations to the marketing research firm regarding the best time to launch a new app.
+Suggest specific months or periods when app updates are less frequent in the chosen category.
+Consider seasonality trends in app installations when recommending the launch time.
+
+Note:- You can use Flight Price and Google Playstore Dataset as per the discussion in lecture.
+Note:  Create your assignment in Jupyter notebook and upload it to GitHub & share that github repository  link through your dashboard. Make sure the repository is public. 
+Data Science Masters 
